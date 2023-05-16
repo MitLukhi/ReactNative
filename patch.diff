@@ -1,0 +1,210 @@
+From 85103e66b22bf723158b51c17f2e2db0d76473de Mon Sep 17 00:00:00 2001
+From: MitLukhi <114086064+MitLukhi@users.noreply.github.com>
+Date: Tue, 16 May 2023 11:03:08 +0530
+Subject: [PATCH] aa
+
+---
+ package.json             |   5 +-
+ src/App.js               | 126 +++++++++++++++++++--------------------
+ src/components/Navbar.js |   6 +-
+ 3 files changed, 70 insertions(+), 67 deletions(-)
+
+diff --git a/package.json b/package.json
+index aa3c453..63fdbfd 100644
+--- a/package.json
++++ b/package.json
+@@ -1,4 +1,5 @@
+ {
++  "homepage": "https://MitLukhi.github.io/ReactNative",
+   "name": "my-app",
+   "version": "0.1.0",
+   "private": true,
+@@ -9,10 +10,12 @@
+     "node-sass": "^7.0.3",
+     "react": "^18.2.0",
+     "react-dom": "^18.2.0",
+-    "react-scripts": "5.0.1",
++    "react-scripts": "5.0.1",   
+     "web-vitals": "^2.1.4"
+   },
+   "scripts": {
++    "predeploy": "npm run build",
++     "deploy": "gh-pages -d build",
+     "start": "react-scripts start",
+     "build": "react-scripts build",
+     "test": "react-scripts test",
+diff --git a/src/App.js b/src/App.js
+index 1ba2b79..6cb74a4 100644
+--- a/src/App.js
++++ b/src/App.js
+@@ -1,74 +1,74 @@
+-import { Suspense, lazy, useContext, useState } from "react";
++import { useState } from "react";
+ import "./App.css";
+ import About from "./components/About";
+-import Form from "./components/Form";
+-import Navbar from "./components/Navbar";
+-import Alert from "./components/Alert";
+-import ApiRequest from "./components/ApiRequest/ApiRequest";
+-import AAForms from "./components/AAForms";
+-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+-import Loading from "./loading";
++// import Form from "./components/Form";
++// import Navbar from "./components/Navbar";
++// import Alert from "./components/Alert";
++// import ApiRequest from "./components/ApiRequest/ApiRequest";
++// import AAForms from "./components/AAForms";
++// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
++// import Loading from "./loading";
+ function App() {
+   const [mode, setMode] = useState("dark");
+   const [alerts, setAlert] = useState(null);
+   // const NavBar = lazy(() => import("components/ApiRequest/Navbar"));
+-  setTimeout(() => {
+-    setAlert(null);
+-  }, 3000);
+-  const showAlert = (message, type) => {
+-    setAlert({ msg: message, type: type });
+-  };
+-  const toggleMode = () => {
+-    if (mode === "light") {
+-      setMode("dark");
+-      document.body.style.backgroundColor = "white";
+-      showAlert("Dark Mode Is On", "success");
+-    } else {
+-      if (mode === "blue") {
+-        setMode("blue");
+-        document.body.style.backgroundColor = "blue";
+-        showAlert("Green Dark  Mode Is On", "success");
+-      } else if (mode === "blue") {
+-        setMode("blue");
+-        document.body.style.backgroundColor = "blue";
+-        showAlert("blue  Mode Is On", "success");
+-      }
+-      setMode("light");
+-      document.body.style.backgroundColor = "black";
+-      showAlert("Light  Mode Is On", "success");
+-    }
+-  };
++  // setTimeout(() => {
++  //   setAlert(null);
++  // }, 3000);
++  // const showAlert = (message, type) => {
++  //   setAlert({ msg: message, type: type });
++  // };
++  // const toggleMode = () => {
++  //   if (mode === "light") {
++  //     setMode("dark");
++  //     document.body.style.backgroundColor = "white";
++  //     showAlert("Dark Mode Is On", "success");
++  //   } else {
++  //     if (mode === "blue") {
++  //       setMode("blue");
++  //       document.body.style.backgroundColor = "blue";
++  //       showAlert("Green Dark  Mode Is On", "success");
++  //     } else if (mode === "blue") {
++  //       setMode("blue");
++  //       document.body.style.backgroundColor = "blue";
++  //       showAlert("blue  Mode Is On", "success");
++  //     }
++  //     setMode("light");
++  //     document.body.style.backgroundColor = "black";
++  //     showAlert("Light  Mode Is On", "success");
++  //   }
++  // };
+ 
+-  const getButtonColor = (color) => {
+-    console.log(color);
+-    if (mode !== "light") {
+-      if (color === "blue") {
+-        setMode("blue");
+-        document.body.style.backgroundColor = "blue";
+-        showAlert("blue  Mode Is On", "success");
+-      } else if (color === "green") {
+-        setMode("green");
+-        document.body.style.backgroundColor = "green";
+-        showAlert("blue  Mode Is On", "success");
+-      }
+-    } else {
+-      showAlert("Please On the Dark Mode to change the color", "danger");
+-    }
+-    return console.log(color);
+-  };
++  // const getButtonColor = (color) => {
++  //   console.log(color);
++  //   if (mode !== "light") {
++  //     if (color === "blue") {
++  //       setMode("blue");
++  //       document.body.style.backgroundColor = "blue";
++  //       showAlert("blue  Mode Is On", "success");
++  //     } else if (color === "green") {
++  //       setMode("green");
++  //       document.body.style.backgroundColor = "green";
++  //       showAlert("blue  Mode Is On", "success");
++  //     }
++  //   } else {
++  //     showAlert("Please On the Dark Mode to change the color", "danger");
++  //   }
++  //   return console.log(color);
++  // };
+   return (
+-    <Router>
+-      {/* <Suspense fallback={<Loading />} /> */}
+-      <Navbar />
+-      <Routes>
+-        <Route path="/about" element={<About />} />
+-        <Route path="/forms" element={<AAForms />} />
+-        {/* <Route path="/about" element={<About />} /> */}
+-      </Routes>
+-    </Router>
+-    // <div>
+-    //   <About />
+-    // </div>
++    // <Router>
++    //   {/* <Suspense fallback={<Loading />} /> */}
++    //   <Navbar />
++    //   <Routes>
++    //     <Route path="/about" element={<About />} />
++    //     <Route path="/forms" element={<AAForms />} />
++    //     {/* <Route path="/about" element={<About />} /> */}
++    //   </Routes>
++    // </Router>
++    <div>
++      <About />
++    </div>
+   );
+ }
+ 
+diff --git a/src/components/Navbar.js b/src/components/Navbar.js
+index 40f3dd1..ed01433 100644
+--- a/src/components/Navbar.js
++++ b/src/components/Navbar.js
+@@ -1,6 +1,6 @@
+ import React from "react";
+ import PropTypes from "prop-types";
+-import { Link } from "react-router-dom";
++// import { Link } from "react-router-dom";
+ export default function Navbar(props) {
+   return (
+     <div>
+@@ -32,7 +32,7 @@ export default function Navbar(props) {
+                 </a>
+               </li>
+               <li className="nav-item">
+-                <Link
++                {/* <Link
+                   className="nav-link active"
+                   aria-current="page"
+                   to="/about"
+@@ -47,7 +47,7 @@ export default function Navbar(props) {
+                   to="/forms"
+                 >
+                   Forms
+-                </Link>
++                </Link> */}
+               </li>
+               <li className="nav-item dropdown">
+                 <a
+-- 
+2.34.1.windows.1
+
